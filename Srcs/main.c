@@ -30,10 +30,12 @@ int main() {
 
         switch (choice) {
             case 1:
-                // TODO: Vérifier immédiatement si le score du joueur dépasse 21 après avoir tiré une carte
                     player_hit(&game);
             display_game(&game);
-            // TODO: Si le score dépasse 21, déclarer la défaite et terminer la partie
+            if (compute_score(game.player_cards, game.player_card_count) > 21) {
+                printf("\n>>> 🚫 BUSTED : Vous avez dépassé 21 ! Vous avez perdu.\n");
+                choice = 0;
+            }
             break;
             case 2:
                 dealer_play(&game);
